@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apply | Northline Finance</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container py-2">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark"><span class="brand-symbol"></span>northline</span></a>
+      <a href="index.html" class="btn btn-outline-dark btn-sm">Exit application</a>
+    </div>
+  </nav>
+
+  <main class="page-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-9">
+          <div class="eyebrow mb-3">Loan application</div>
+          <h1>Tell us about your plans.</h1>
+          <p class="muted mb-4">Please provide complete and accurate information. This helps us review your application and contact you smoothly if more information is needed.</p>
+
+          <div class="d-flex justify-content-between mb-2 small fw-bold">
+            <span class="step-pill current" data-step-label>1. Loan type</span>
+            <span class="step-pill" data-step-label>2. Personal details</span>
+            <span class="step-pill" data-step-label>3. Income</span>
+            <span class="step-pill" data-step-label>4. Contacts</span>
+            <span class="step-pill" data-step-label>5. Review</span>
+          </div>
+          <div class="progress mb-4"><div class="progress-bar" id="applicationProgress"></div></div>
+
+          <div id="applicationFormView">
+            <form id="loanApplication" action="https://formspree.io/f/mnpnnaov" method="POST" enctype="multipart/form-data" novalidate>
+              <input type="hidden" name="_subject" value="New Northline loan application">
+              <section class="card-clean" data-step-panel>
+                <h2 class="h3">Loan type</h2>
+                <p class="muted">Select the financing option that best matches your needs.</p>
+                <div class="row g-3 mt-2">
+                  <div class="col-12">
+                    <label>What are you applying for? *</label>
+                    <div class="d-flex gap-3 flex-wrap">
+                      <label class="border rounded p-3 flex-grow-1"><input type="radio" name="loanType" value="personal" required> Personal loan</label>
+                      <label class="border rounded p-3 flex-grow-1"><input type="radio" name="loanType" value="business"> Business financing</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6"><label for="amount">Requested amount *</label><input id="amount" name="requestedAmount" class="form-control" type="number" min="1000" required></div>
+                  <div class="col-md-6"><label for="purpose">Purpose *</label><select id="purpose" name="purpose" class="form-select" required><option value="">Select one</option><option>Debt consolidation</option><option>Home improvement</option><option>Working capital</option><option>Equipment or inventory</option><option>Other eligible purpose</option></select></div>
+                  <div class="col-md-6"><label for="term">Preferred repayment term *</label><select id="term" class="form-select" required><option value="">Select one</option><option>24 months</option><option>36 months</option><option>48 months</option><option>60 months</option></select></div>
+                </div>
+                <div id="businessFields" class="hidden mt-4 pt-4 border-top">
+                  <h3 class="h5">Business details</h3>
+                  <div class="row g-3">
+                    <div class="col-md-6"><label>Business legal name</label><input class="form-control" name="businessName"></div>
+                    <div class="col-md-6"><label>Business structure</label><select class="form-select" name="businessStructure"><option>Corporation</option><option>LLC</option><option>Partnership</option><option>Sole proprietorship</option></select></div>
+                    <div class="col-md-6"><label>Industry</label><input class="form-control" name="industry"></div>
+                    <div class="col-md-6"><label>Years in business</label><input class="form-control" name="yearsInBusiness" type="number" min="0"></div>
+                    <div class="col-md-6"><label>Estimated annual revenue</label><input class="form-control" name="annualRevenue" type="number"></div>
+                    <div class="col-md-6"><label>Number of employees</label><input class="form-control" name="employees" type="number" min="0"></div>
+                  </div>
+                </div>
+                <div class="text-end mt-4"><button type="button" class="btn btn-primary" data-next>Continue <span aria-hidden="true">→</span></button></div>
+              </section>
+
+              <section class="card-clean hidden" data-step-panel>
+                <h2 class="h3">Personal details</h2>
+                <p class="muted">Enter your legal name and current contact details exactly as they appear on your official records.</p>
+                <div class="row g-3">
+                  <div class="col-md-4"><label>Legal first name *</label><input class="form-control" name="firstName" required></div>
+                  <div class="col-md-4"><label>Legal middle name</label><input class="form-control" name="middleName"></div>
+                  <div class="col-md-4"><label>Legal last name *</label><input class="form-control" name="lastName" required></div>
+                  <div class="col-md-6"><label>Date of birth *</label><input class="form-control" name="dateOfBirth" type="date" required></div>
+                  <div class="col-md-6"><label>Email *</label><input class="form-control" name="email" type="email" required></div>
+                  <div class="col-md-6"><label>Phone number *</label><input class="form-control" name="phone" type="tel" required></div>
+                  <div class="col-md-6"><label>Country *</label><select id="country" name="country" class="form-select" required><option value="">Select country</option><option value="US">United States</option><option value="CA">Canada</option></select></div>
+                  <div class="col-md-6"><label>Residential address *</label><input class="form-control" name="residentialAddress" required></div>
+                  <div class="col-md-3"><label>City *</label><input class="form-control" name="city" required></div>
+                  <div class="col-md-3"><label>State / Province *</label><input class="form-control" name="stateProvince" required></div>
+                  <div class="col-md-3"><label>ZIP / Postal code *</label><input class="form-control" name="postalCode" required></div>
+                </div>
+                <div id="countryNote" class="alert alert-warning hidden mt-3">This application portal currently accepts applications from residents of the United States and Canada.</div>
+                <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-dark" data-back>Back</button><button type="button" class="btn btn-primary" data-next>Continue</button></div>
+              </section>
+
+              <section class="card-clean hidden" data-step-panel>
+                <h2 class="h3">Employment and income</h2>
+                <p class="muted">Income information may be subject to verification.</p>
+                <div class="row g-3">
+                  <div class="col-md-6"><label>Employment status *</label><select class="form-select" name="employmentStatus" required><option value="">Select one</option><option>Employed</option><option>Self-employed</option><option>Retired</option><option>Other</option></select></div>
+                  <div class="col-md-6"><label>Employer or business legal name</label><input class="form-control" name="employerName"></div>
+                  <div class="col-md-6"><label>Job title</label><input class="form-control" name="jobTitle"></div>
+                  <div class="col-md-6"><label>Gross annual income *</label><input class="form-control" name="annualIncome" type="number" required></div>
+                  <div class="col-md-6"><label>Monthly housing payment</label><input class="form-control" name="housingPayment" type="number"></div>
+                  <div class="col-md-6"><label>Estimated monthly debt obligations</label><input class="form-control" name="monthlyDebt" type="number"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-dark" data-back>Back</button><button type="button" class="btn btn-primary" data-next>Continue</button></div>
+              </section>
+
+              <section class="card-clean hidden" data-step-panel>
+                <h2 class="h3">Emergency contact</h2>
+                <p class="muted">Provide a person we may contact if we cannot reach you about your application or servicing. This person does not become responsible for your loan.</p>
+                <div class="row g-3">
+                  <div class="col-md-6"><label>Full legal name</label><input class="form-control" name="emergencyContactName"></div>
+                  <div class="col-md-6"><label>Relationship to applicant</label><input class="form-control" name="emergencyContactRelationship" placeholder="For example, spouse, parent, or friend"></div>
+                  <div class="col-md-6"><label>Phone number</label><input class="form-control" name="emergencyContactPhone" type="tel"></div>
+                  <div class="col-md-6"><label>Email address</label><input class="form-control" name="emergencyContactEmail" type="email"></div>
+                  <div class="col-12"><label>Address</label><input class="form-control" name="emergencyContactAddress"></div>
+                </div>
+                <p class="disclaimer mt-3">Provide contact information only where you have permission or an appropriate basis to do so.</p>
+                <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-dark" data-back>Back</button><button type="button" class="btn btn-primary" data-next>Continue</button></div>
+              </section>
+
+              <section class="card-clean hidden" data-step-panel>
+                <h2 class="h3">Identity verification and review</h2>
+                <p class="muted">Enter accurate information and provide the documents requested so your application can be reviewed efficiently.</p>
+                <div class="row g-3">
+                  <div class="col-md-6"><label>Government-issued ID type</label><select class="form-select" name="idType"><option>Driver license</option><option>Passport</option><option>Provincial ID</option></select></div>
+                  <div class="col-md-6"><label>ID issuing country / state / province</label><input class="form-control" name="idIssuingLocation"></div>
+                  <div class="col-md-4"><label>Front of ID</label><input class="form-control" name="idFront" type="file" accept=".jpg,.jpeg,.png,.pdf"></div>
+                  <div class="col-md-4"><label>Back of ID</label><input class="form-control" name="idBack" type="file" accept=".jpg,.jpeg,.png,.pdf"></div>
+                  <div class="col-md-4"><label>Selfie</label><input class="form-control" name="selfie" type="file" accept=".jpg,.jpeg,.png"></div>
+                </div>
+                <div id="reviewSummary" class="mt-4"></div>
+                <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="consentAccuracy"><label class="form-check-label" for="consentAccuracy">I confirm that the information I provided is accurate and complete.</label></div>
+                <div class="form-check mb-3"><input class="form-check-input" type="checkbox" required id="consentVerify"><label class="form-check-label" for="consentVerify">I authorize the service provider to verify information supplied in my application, where permitted by law.</label></div>
+                <div class="form-check mb-3"><input class="form-check-input" type="checkbox" required id="consentNoApproval"><label class="form-check-label" for="consentNoApproval">I acknowledge that submitting this application does not guarantee approval.</label></div>
+                <div class="form-check mb-3"><input class="form-check-input" type="checkbox" required id="consentPrivacy"><label class="form-check-label" for="consentPrivacy">I have reviewed the <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms and Conditions</a>.</label></div>
+                <div class="d-flex justify-content-between mt-4"><button type="button" class="btn btn-outline-dark" data-back>Back</button><button class="btn btn-primary" type="submit">Submit application</button></div>
+              </section>
+            </form>
+          </div>
+
+          <div id="successView" class="card-clean hidden text-center py-5">
+            <span class="badge-soft">APPLICATION RECEIVED</span>
+            <h2 class="section-title mt-3">Your application is under review.</h2>
+            <p class="muted mx-auto" style="max-width:560px">Your application has been successfully submitted and is currently under review. If additional information is required, we will contact you using the details provided.</p>
+            <div class="card-clean d-inline-block text-start mt-3"><small class="muted">Application ID</small><div class="h3 mb-0" id="applicationId">APP-XXXXXX</div></div>
+            <p class="disclaimer mt-4">Please check your email for further instructions. Submitting an application does not constitute approval or a commitment to lend.</p>
+            <div class="d-flex justify-content-center gap-2 mt-4"><a id="statusLink" class="btn btn-primary" href="status.html">Track application</a><a class="btn btn-outline-dark" href="index.html">Return to home</a><a class="btn btn-outline-dark" href="contact.html">Contact support</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/application.js"></script>
+</body>
+</html>
